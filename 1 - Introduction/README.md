@@ -1,5 +1,11 @@
 ## COURSE PROJECTS + CODE:
 
+https://evrone.com/blog/ryan-dahl-interview
+
+### Ryan Dahl: Original Node.js presentation
+
+https://www.youtube.com/watch?v=ztspvPYybIY
+
 You can find all of the course projects and code at the below repositories. Don't worry, we will link to them at the beginning of each project section as well :
 
 https://github.com/odziem/planets-project
