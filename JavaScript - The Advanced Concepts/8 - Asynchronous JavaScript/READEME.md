@@ -2,6 +2,8 @@
 
 ## Asynchronous
 
+![Node Architecture](/images/Nodejs%20Architecture.png)
+
 ### Call Stack 
 
 
@@ -105,3 +107,162 @@ const getData2 = async function() {
 
 ## Object Spread Operator (ES2018)
 
+```js
+
+
+const animals = {
+    lion: 15,
+    cat: 5,
+    dog: 2,
+    bird: 20
+}
+
+const { lion, ...rest } = animals;
+
+console.log(lion)
+console.log(rest)
+
+const numbers = [1, 2, 3, 4, 5]
+
+function sum(a, b, c, d, e) {
+    return a + b + c + d + e;
+}
+
+console.log(sum(...numbers))
+
+function objectSpread(p1, p2, p3) {
+    console.log(p1)
+    console.log(p2)
+    console.log(p3)
+}
+
+const { cat, ...rest2} = animals;
+
+objectSpread(lion, cat, rest2);
+
+```
+
+## Job Queue
+
+![Job Queue](/images/Job%20Queue.jpg)
+
+```js
+// Callback Queue - Task Queue => Simulation Web API
+setTimeout(() => {
+    console.log('1')
+}, 0)
+
+setTimeout(() => {
+    console.log('2')
+}, 10)
+
+// Job Queue - Microtask Queue
+Promise.resolve('3').then((data) => console.log(data))
+
+// General Execution
+console.log('4')
+```
+
+## Parallel, Sequence, Race
+
+```js
+// with block code {} arrow function
+const promisify = (item, delay) => {
+    return new Promise((resolve) => {
+        setTimeout(() =>
+            resolve(item)
+        , delay)
+    })
+}
+
+// without block code {} arrow function
+const promisify2 = (item, delay) => 
+    new Promise((resolve) => 
+        setTimeout(() => 
+            resolve(item), delay))
+
+const a = () => promisify('a', 100)
+const b = () => promisify('b', 5000)
+const c = () => promisify('c', 3000)
+```
+
+### Parallel
+
+```js
+async function parallel() {
+    const arrayOfPromises = [a(), b(), c()];
+    const [output1, output2, output3] = await Promise.all(arrayOfPromises)
+    return `parallel is done ${output1}, ${output2}, ${output3}`
+}
+
+parallel().then(data => console.log(data))
+```
+
+### Race
+
+```js
+async function race() {
+    const arrayOfPromises = [a(), b(), c()]
+    const output1 = await Promise.race(arrayOfPromises);
+    return `race is done ${output1}`
+}
+
+race().then(data => console.log(data))
+```
+
+### Sequence
+
+```js
+async function sequence() {
+    const output1 = await a();
+    const output2 = await b();
+    const output3 = await c();
+    return `sequence is done: ${output1}, ${output2}, ${output3}`
+}
+
+sequence().then(console.log);
+```
+
+## allSettled() (ES2020)
+
+```js
+const promiseOne = new Promise((resolve, reject) => 
+    setTimeout(resolve, 6000))
+const promiseTwo = new Promise((resolve, reject) =>
+    setTimeout(reject, 3000))
+
+Promise.allSettled([promiseOne, promiseTwo])
+    .then(console.log)
+    .catch(e => console.log('something falied', e))
+
+Promise.all(promiseOne, promiseTwo)
+    .then(console.log)
+    .catch(e => console.log('something falied', e))
+```
+
+## any() (ES2021)
+
+Promise.any() resolves if any of the supplied promises is resolved. Below we have 3 promises, which resolves at random times.
+
+```js
+const p1 = new Promise((resolve, reject) => {
+  setTimeout(() => resolve("A"), Math.floor(Math.random() * 1000));
+});
+const p2 = new Promise((resolve, reject) => {
+  setTimeout(() => resolve("B"), Math.floor(Math.random() * 1000));
+});
+const p3 = new Promise((resolve, reject) => {
+  setTimeout(() => resolve("C"), Math.floor(Math.random() * 1000));
+});
+```
+
+Out of p1, p2 and p3, whichever resolves first is taken by Promise.any().
+
+```js
+(async function () {
+  const result = await Promise.any([p1, p2, p3]);
+  console.log(result); // Prints "A", "B" or "C"
+})();
+```
+
+What if none of the promises resolve? In that case Promise.any() throws an error!
