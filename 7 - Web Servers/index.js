@@ -17,17 +17,48 @@ const friends = [
     }
 ]
 
+/*
+
+ -> https://en.wikipedia.org/wiki/Ryan_Dahl
+ ** POST Method with fetch
+fetch('http://localhost:3000/friends', {
+    method: 'POST',
+    body: JSON.stringify({ id: 3, name: 'Ryan Dahl'})
+});
+
+ -> https://pt.wikipedia.org/wiki/Grace_Hopper
+ ** POST Method with fetch
+fetch('http://localhost:3000/friends', {
+    method: 'POST',
+    body: JSON.stringify({ id: 3, name: 'Grace Hopper'})
+});
+
+*/
+
 const server = http.createServer((req, res) => {
     /* res.writeHead(200, {
         'Content-Type': 'text/plain',
     })
     res.end('Hello! Sir.') */
 
+    // /friends/3 => [ '', 'friends', '3' ]
     const items = req.url.split('/');
 
     console.log(items)
 
-    if ( items[1] === 'friend') {
+    if ( req.method === 'POST' && items[1] === 'friends') {
+
+        req.on('data', (data) => {
+            const friend = data.toString();
+
+            friends.push(JSON.parse(friend));
+
+            console.log(friend);
+            console.log(friends);
+        });
+        req.pipe(res); // allows response in .then()
+
+    } else if ( req.method === 'GET' && items[1] === 'friends') {
 
         if (items.length === 3) {
 

@@ -54,3 +54,29 @@ Server error responses (500 – 599)
 ## What's Origin
 
 ![Origin URL](/images/origin-url.jpg)
+
+### Same-origin policy
+
+> https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy
+
+
+Say you're browsing a page on www.wikipedia.org. In general, will the following requests succeed, or fail?
+
+1. A JavaScript GET request to www.bank.com.
+
+2. A JavaScript POST request to www.bank.com.
+
+3. Clicking an HTML link to a video on www.bank.com.
+
+**Here we go!** There are possible exceptions, but in general the following will be true:
+
+1. This request will FAIL, because requests to get information from a cross-origin domain are not allowed by the browser. The browser is trying to protect your privacy by preventing www.wikipedia.org from stealing your private information from www.bank.com.
+
+2. This request will SUCCEED. This is a little known exception to the Same Origin Policy! The decision to allow POST requests is mostly historical, but there is also a lower chance that a POST request will steal your private information. POST requests are used to write data to a server, rather than GET data from it, so it's less likely the response will contain private information.
+
+3. This request will SUCCEED. The Same Origin Policy applies only to scripts and not static resources like HTML tags.
+
+### Cross-Origin Resource Sharing (CORS)
+
+> https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+
