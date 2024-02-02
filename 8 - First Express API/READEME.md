@@ -111,3 +111,6 @@ app.listen(80, function () {
 
 > https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller
 
+## RESTFUL APIS (REPRESENTATION-STATE-TRANSFER)
+
+![restful](/images/restful.png)
