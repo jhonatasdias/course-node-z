@@ -1,6 +1,6 @@
-const { planets } = require('../../models/planets.model')
+const { getAllPlanets } = require('../../models/planets.model')
 
-function getAllPlanets(req, res) {
+function htppGetAllPlanets(req, res) {
     
     // return define only one status, if don't have return the next step is successful (status(200))
     if (!req.body) {
@@ -10,9 +10,9 @@ function getAllPlanets(req, res) {
     }
     
     // Define one status
-    return res.status(200).json(planets);
+    return res.status(200).json(getAllPlanets());
 }
 
 module.exports = {
-    getAllPlanets,
+    htppGetAllPlanets,
 }

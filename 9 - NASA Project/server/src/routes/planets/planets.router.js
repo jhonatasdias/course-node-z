@@ -4,10 +4,10 @@ const router = express.Router();
 // const planetsController = require('./planets.controller')
 
 const {
-    getAllPlanets,
+    htppGetAllPlanets,
 } = require('./planets.controller')
 
-router.get('/', getAllPlanets);
+router.get('/', htppGetAllPlanets);
 
 
 module.exports = router;

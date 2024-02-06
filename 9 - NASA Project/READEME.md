@@ -6,6 +6,8 @@
 
 ## NPM command projects
 
+> "watch": "nodemon src/server.js"
+
 > "server": "cd server && npm run watch"
 
 > "client": "cd client && npm start"
