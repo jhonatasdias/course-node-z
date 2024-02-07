@@ -70,3 +70,7 @@ morgan(function (tokens, req, res) {
   ].join(' ')
 })
 ```
+
+## Updating Achitecture
+
+!["project-architectural-diagram"](../images/Project-Architectural-Diagram.png)
