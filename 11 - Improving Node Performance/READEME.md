@@ -55,4 +55,22 @@ PM2 is a production process manager for Node.js applications with a built-in loa
 
 * whatch and restart
 
-Command: `pm2 start *.js`, `pm2 status`, `pm2 stop id/name`, `pm2 delete name`, `pm2 logs`, `pm2 restart server`, `pm2 logs --lines 200`, `pm2 start *.js -l(logs) logs.txt -i(instance) max`, `pm2 show 0`, `pm2 monit`, `pm2 reload server`  
+Command: `pm2 start *.js`, `pm2 status`, `pm2 stop id/name`, `pm2 delete name`, `pm2 logs`, `pm2 restart server`, `pm2 logs --lines 200`, `pm2 start *.js -l(logs) logs.txt -i(instance) max`, `pm2 show 0`, `pm2 monit`, `pm2 reload server` 
+
+## Worker threads
+
+Worker threads is completely link with browser(v8), diferente the clusters with use processor of cpu.
+
+> https://nodejs.org/api/worker_threads.html
+
+The node:worker_threads module enables the use of threads that execute JavaScript in parallel. To access it:
+
+```js
+const worker = require('node:worker_threads');
+```
+
+Workers (threads) are useful for performing CPU-intensive JavaScript operations. They do not help much with I/O-intensive work. The Node.js built-in asynchronous I/O operations are more efficient than Workers can be.
+
+Unlike child_process or cluster, worker_threads can share memory. They do so by transferring ArrayBuffer instances or sharing SharedArrayBuffer instances.
+
+![worker-threads](../images/worker-threads.png)
