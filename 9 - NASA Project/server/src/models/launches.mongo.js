@@ -11,7 +11,7 @@ const launchesSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    targer: {
+    target: {
         type: String, 
         required: true
     },

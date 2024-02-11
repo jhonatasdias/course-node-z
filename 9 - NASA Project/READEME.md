@@ -73,4 +73,10 @@ morgan(function (tokens, req, res) {
 
 ## Updating Achitecture
 
-!["project-architectural-diagram"](../images/Project-Architectural-Diagram.png)
+V1
+
+!["project-architectural-diagram-v1"](../images/Project-Architectural-Diagram.png)
+
+V2
+
+!["project-architectural-diagram-v2"](../images/NASA-Mission-Control-Architecture.png)
