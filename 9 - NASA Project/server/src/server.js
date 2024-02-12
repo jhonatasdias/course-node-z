@@ -2,7 +2,8 @@ const http = require('http')
 const app = require('./app')
 const { mongoConnect } = require('../src/services/mongo');
 
-const { loadPlanetsData } = require('./models/planets.model')
+const { loadPlanetsData } = require('./models/planets.model');
+const { loadLaunchesData } = require('./models/launches.model');
 
 const PORT = 8000 || process.env.PORT;
 
@@ -15,6 +16,7 @@ app.get('/', (req, res)=> {
 async function startServer() {
     await mongoConnect(); 
     await loadPlanetsData();
+    await loadLaunchesData();
 
     server.listen(PORT, () => {
         console.log(`http://localhost:${PORT}`)
