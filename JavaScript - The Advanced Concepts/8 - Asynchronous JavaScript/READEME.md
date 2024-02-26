@@ -6,8 +6,6 @@
 
 ### Call Stack 
 
-
-
 ### Memory Heap
 
 ### Memory Leak
@@ -32,6 +30,8 @@ A promise is an object that may produce a single value some time in the future e
 
 Creates a Promise that is resolved with an array of results when all of the provided Promises
 resolve, or rejected when any Promise is rejected. => atention here, only one Promise is necessery for rejected the all Promise
+
+![promise](promise.png)
 
 ## ASYNC / AWAIT => PROMISE
 

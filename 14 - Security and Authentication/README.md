@@ -142,3 +142,33 @@ Status Code = 429 Too Many Requests
 Protect your API the millions requests per hour, limit the requests for the server is doesn't breaking.
 
 Api controls have different permission for different keys and this is important for your usuares.
+
+## Sessions, Tokens and Cookies
+
+### Sessions
+
+Temporary and the user not change, sessions like database but your life is short, if you logout in your applocation the sessions is free.
+
+Two packages `express-session` and `cookie-sesion`
+
+> https://www.npmjs.com/package/express-session
+
+> https://www.npmjs.com/package/cookie-session
+
+* Cookie-session side client settings
+
+### Tokens
+
+
+### Cookies
+
+Cockies are almost always used to implement the session.
+
+* State cookies
+* Stateless cookies
+
+> Server VS Client Side Sessions With Cookies => see again
+
+> Session Middleware in Express => see again
+
+## 
