@@ -8,11 +8,19 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
-            - run: cd 9\ -\ NASA\ Project/
+            - name: Checkout repository
+              uses: actions/checkout@v4
+            
+            - name: Change to directory to NASA Project
+              run: cd 9\ -\ NASA\ Project/
+            
             - name: Use Node.js version 20
-            uses: actions/setup-node@v3
-            with:
+              uses: actions/setup-node@v4
+              with:
                 node-version: '20'
-            - run: npm install
-            - run: run build --prefix client
+            
+            - name: Install dependencies
+              run: npm install
+            
+            - name: Build project
+              run: run build --prefix client
