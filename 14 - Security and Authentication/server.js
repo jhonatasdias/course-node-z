@@ -6,7 +6,7 @@ const helmet = require('helmet');
 const passport = require('passport');
 const { Strategy } = require('passport-google-oauth20');
 const cookieSession = require('cookie-session');
-const config = require('./config/client_secret.json');
+const configGoogle = require('./config/google_secret.json');
 
 const app = express();
 
@@ -30,12 +30,12 @@ passport.deserializeUser((id, done) => {
     done(null, id); // done(err, success)
 })
 
-const AUTH_OPTIONS = {
+const GOOGLE_STRATEGY = {
     callbackURL: '/auth/google/callback',
-    clientID: config.web.client_id,
-    clientSecret: config.web.client_secret,
-    COOKIE_KEY_1: config.web.cookie_key_1,
-    COOKIE_KEY_2: config.web.cookie_key_2
+    clientID: configGoogle.web.client_id,
+    clientSecret: configGoogle.web.client_secret,
+    COOKIE_KEY_1: configGoogle.web.cookie_key_1,
+    COOKIE_KEY_2: configGoogle.web.cookie_key_2
 }
 
 // console.log(AUTH_OPTIONS);
@@ -51,7 +51,7 @@ function verifyCallback(accessToken, refreshToken, profile, done) {
     done(null, profile);
 }
 
-passport.use(new Strategy(AUTH_OPTIONS, verifyCallback))
+passport.use(new Strategy(GOOGLE_STRATEGY, verifyCallback))
 
 // Middleware
 app.use(helmet());
@@ -59,7 +59,7 @@ app.use(helmet());
 app.use(cookieSession({
     name: 'session',
     maxAge: 24 * 60 * 60 * 1000,
-    keys: [ AUTH_OPTIONS.COOKIE_KEY_1, AUTH_OPTIONS.COOKIE_KEY_2 ]
+    keys: [ GOOGLE_STRATEGY.COOKIE_KEY_1, GOOGLE_STRATEGY.COOKIE_KEY_2 ]
 }));
 
 app.use((req, res, next) => {
@@ -87,6 +87,7 @@ function checkLoggedIn(req, res, next) {
     console.log('Current user is: ', req.user);
     const isLoggedIn = req.isAuthenticated() && req.user;
     if(!isLoggedIn) {
+        res.setHeader('content-type', 'application/json');
         res.status(401).json({
             error: 'You must log in!' 
         })
@@ -124,6 +125,7 @@ app.get('/auth/logout', (req, res, next) => {
 })
 
 app.get('/secret', checkLoggedIn, (req, res) => {
+    res.setHeader('content-type', 'text/html');
     res.send('your personal secret value is 42!')
 })
 

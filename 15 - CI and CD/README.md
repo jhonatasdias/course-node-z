@@ -4,11 +4,23 @@
 
 * Quality Process
 
+![CI-CD](../images/ci-cd.png)
+
 ## Continuos Integration
 
 
+## Continuos Delivey
 
 
-## Continuos Delivery
+## Continuos Deployment
 
 
+### Staging
+
+Simulation the production for tasting
+
+
+### Pipeline
+
+
+![pipeline](../images/pipeline.png)
