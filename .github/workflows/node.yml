@@ -4,15 +4,18 @@ on:
         branches: [ main ]
     pull_request:
         branches: [ main ]
+
+defaults:
+  run:
+    shell: bash
+    working-directory: 9\ -\ NASA\ Project/
+
 jobs:
     build:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
-            
-            - name: Change to directory to NASA Project
-              run: cd 9\ -\ NASA\ Project/
             
             - name: Use Node.js version 20
               uses: actions/setup-node@v4
