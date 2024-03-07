@@ -12,18 +12,26 @@ defaults:
 
 jobs:
     build:
+        env:
+          CI: true
+        strategy:
+          matrix:
+            node-version: [18.x, 20.x]
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
             
-            - name: Use Node.js version 20
+            - name: Use Node.js version ${{ matrix.node-version }}
               uses: actions/setup-node@v4
               with:
-                node-version: '20'
+                node-version: ${{ matrix.node-version }}
             
             - name: Install dependencies
               run: npm install
             
             - name: Build project
               run: npm run build --prefix client
+
+            - name: Test command
+              run: npm test
