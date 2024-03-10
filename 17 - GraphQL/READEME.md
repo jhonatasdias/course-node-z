@@ -82,3 +82,39 @@ mutation {
   }
 }
 ```
+
+## Apollo
+
+```js
+// Only execute select field
+query ExampleQuery {
+  orders {
+    date
+  }
+  products {
+    id
+    description
+    price
+  }
+}
+
+mutation ExampleMutation {
+  addNewProduct(id: "orangejacket", description: "Orange Jacket", price: 80.00) {
+    description
+    price
+    reviews {
+      rating
+      comment
+    }
+  }
+  showReview: addNewProductReview(id: "redshoe", rating: 5, comment: "Show item") {
+    rating
+    comment
+  }
+  jacketReview: addNewProductReview(id: "orangejacket", rating: 4) {
+    rating
+    comment
+  }
+}
+```
+
