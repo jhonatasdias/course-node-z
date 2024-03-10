@@ -8,9 +8,13 @@ const { makeExecutableSchema } = require('@graphql-tools/schema');
 const typesArray = loadFilesSync('**/*', {
     extensions: ['graphql']
 });
+const resolversArray = loadFilesSync('**/*', {
+    extensions: ['resolvers.js']
+});
 
 const schema = makeExecutableSchema({
-    typeDefs: typesArray
+    typeDefs: typesArray,
+    resolvers: resolversArray
 });
 
 const root = {
@@ -23,7 +27,6 @@ const PORT = 3000;
 
 app.all("/graphql", graphqlHTTP({
     schema: schema,
-    rootValue: root,
     graphiql: true
 }))
 
