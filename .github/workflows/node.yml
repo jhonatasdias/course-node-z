@@ -1,44 +1,44 @@
-name: NASA Project CI
-on:
-    push:
-        branches: [ main ]
-    pull_request:
-        branches: [ main ]
+# name: NASA Project CI
+# on:
+#     push:
+#         branches: [ main ]
+#     pull_request:
+#         branches: [ main ]
 
-defaults:
-  run:
-    shell: bash
-    working-directory: 9 - NASA Project
+# defaults:
+#   run:
+#     shell: bash
+#     working-directory: 9 - NASA Project
 
-jobs:
-    build:
-        env:
-          CI: true
-          MONGO_URL: mongodb://localhost/nasa
-        strategy:
-          matrix:
-            node-version: [18.x, 20.x]
-            mongodb-version: ['7.0']
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v4
+# jobs:
+#     build:
+#         env:
+#           CI: true
+#           MONGO_URL: mongodb://localhost/nasa
+#         strategy:
+#           matrix:
+#             node-version: [18.x, 20.x]
+#             mongodb-version: ['7.0']
+#         runs-on: ubuntu-latest
+#         steps:
+#             - name: Checkout repository
+#               uses: actions/checkout@v4
             
-            - name: Use Node.js version ${{ matrix.node-version }}
-              uses: actions/setup-node@v4
-              with:
-                node-version: ${{ matrix.node-version }}
+#             - name: Use Node.js version ${{ matrix.node-version }}
+#               uses: actions/setup-node@v4
+#               with:
+#                 node-version: ${{ matrix.node-version }}
             
-            - name: MongoDB in GitHub Actions
-              uses: supercharge/mongodb-github-action@1.10.0
-              with:
-                mongodb-version: ${{ matrix.mongodb-version }}
+#             - name: MongoDB in GitHub Actions
+#               uses: supercharge/mongodb-github-action@1.10.0
+#               with:
+#                 mongodb-version: ${{ matrix.mongodb-version }}
               
-            - name: Install dependencies
-              run: npm install
+#             - name: Install dependencies
+#               run: npm install
             
-            - name: Build project
-              run: npm run build --prefix client
+#             - name: Build project
+#               run: npm run build --prefix client
 
-            - name: Test command
-              run: npm test
+#             - name: Test command
+#               run: npm test
