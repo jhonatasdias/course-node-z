@@ -114,3 +114,6 @@ app.listen(80, function () {
 ## RESTFUL APIS (REPRESENTATION-STATE-TRANSFER)
 
 ![restful](/images/restful.png)
+
+
+![api-design](../images/api-design.png)

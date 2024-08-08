@@ -80,3 +80,7 @@ V1
 V2
 
 !["project-architectural-diagram-v2"](../images/NASA-Mission-Control-Architecture.png)
+
+# Problem
+
+POST method API have one problem

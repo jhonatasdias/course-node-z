@@ -31,3 +31,7 @@ Login in Docker Hub
 Inicialize dockerfile with flag -t (name the container)
 
 > docker run -it (within terminal image nasa-project) -p 8000:8000 jhonatasdias/nasa-project
+
+# Problem
+
+The command in dockerfile `npm run build --prefix client` doesnt work.
